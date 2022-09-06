@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "ga4gh-json-canonical"
+version = "0.1.0"
+description = "Partial Python implementation of JSON Canonicalization Scheme as described in RFC 8785 (https://www.rfc-editor.org/rfc/rfc8785.html) as needed by the Sequence Collection working group."
+authors = ["Sveinung Gundersen <sveinugu@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.0"
+pytest-pycharm = "^0.7.0"
+yapf = "^0.32.0"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+flake8-quotes = "^3.3.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.yapf]
+based_on_style = "google"
+align_closing_bracket_with_visual_indent = true
+blank_line_before_nested_class_or_def = false
+column_limit = 100
+indent_dictionary_value = true
+join_multiple_lines = true
+split_all_comma_separated_values = false
+split_all_top_level_comma_separated_values = true
+split_before_expression_after_opening_paren = true
+split_before_arithmetic_operator = true
+
+[tool.isort]
+profile = "google"
+force_single_line = false
+multi_line_output = 1
+src_paths = ["src/unifair", "tests"]
+line_length = 100
