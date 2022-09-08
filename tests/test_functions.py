@@ -1,5 +1,57 @@
-from ga4gh_json_canonical.functions import dict_to_sorted_by_utf16_tuple, to_utf16_tuple
+from ga4gh_json_canonical.functions import (dict_to_sorted_by_utf16_tuple,
+                                            float_to_int_if_whole_and_not_large_exp,
+                                            int_to_str_if_too_large,
+                                            to_utf16_tuple)
 from ga4gh_json_canonical.util import JSON, preprocess_json_data
+
+
+def test_float_to_int_if_whole_and_not_large_exp():
+    assert float_to_int_if_whole_and_not_large_exp(1.0) == 1
+    assert type(float_to_int_if_whole_and_not_large_exp(1.0)) is int
+
+    assert float_to_int_if_whole_and_not_large_exp(-1.0) == -1
+    assert type(float_to_int_if_whole_and_not_large_exp(-1.0)) is int
+
+    assert float_to_int_if_whole_and_not_large_exp(1.5) == 1.5
+    assert type(float_to_int_if_whole_and_not_large_exp(1.5)) is float
+
+    assert float_to_int_if_whole_and_not_large_exp(-1.5) == -1.5
+    assert type(float_to_int_if_whole_and_not_large_exp(-1.5)) is float
+
+    assert float_to_int_if_whole_and_not_large_exp(1e10) == 10000000000
+    assert type(float_to_int_if_whole_and_not_large_exp(1e10)) is int
+
+    assert float_to_int_if_whole_and_not_large_exp(1e21) == 1000000000000000000000
+    assert type(float_to_int_if_whole_and_not_large_exp(1e21)) is int
+
+    assert float_to_int_if_whole_and_not_large_exp(1e22) == 1e22
+    assert type(float_to_int_if_whole_and_not_large_exp(1e22)) is float
+
+    assert float_to_int_if_whole_and_not_large_exp(-1e21) == -1000000000000000000000
+    assert type(float_to_int_if_whole_and_not_large_exp(-1e21)) is int
+
+    assert float_to_int_if_whole_and_not_large_exp(-1e22) == -1e22
+    assert type(float_to_int_if_whole_and_not_large_exp(-1e22)) is float
+
+    assert float_to_int_if_whole_and_not_large_exp(1e-1) == 0.1
+    assert type(float_to_int_if_whole_and_not_large_exp(1e-1)) is float
+
+    assert float_to_int_if_whole_and_not_large_exp(-1e-1) == -0.1
+    assert type(float_to_int_if_whole_and_not_large_exp(-1e-1)) is float
+
+
+def test_int_to_str_if_too_large():
+    assert int_to_str_if_too_large(9223372036854775807) == 9223372036854775807
+    assert type(int_to_str_if_too_large(9223372036854775807)) is int
+
+    assert int_to_str_if_too_large(-9223372036854775807) == -9223372036854775807
+    assert type(int_to_str_if_too_large(-9223372036854775807)) is int
+
+    assert int_to_str_if_too_large(-9223372036854775808) == '-9223372036854775808'
+    assert type(int_to_str_if_too_large(-9223372036854775808)) is str
+
+    assert int_to_str_if_too_large(-9223372036854775808) == '-9223372036854775808'
+    assert type(int_to_str_if_too_large(-9223372036854775808)) is str
 
 
 def test_to_utf16_tuple():
