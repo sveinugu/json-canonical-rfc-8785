@@ -23,10 +23,10 @@ def to_utf16_tuple(any_str: str) -> Tuple[int]:
         int.from_bytes(utf_16_bytes[i:i + 2], 'big') for i in range(0, len(utf_16_bytes), 2))
 
 
-def key_to_utf16_tuple(keyval: Tuple[str, JSON]) -> Tuple[int]:
+def _key_to_utf16_tuple(keyval: Tuple[str, JSON]) -> Tuple[int]:
     key, _val = keyval
     return to_utf16_tuple(key)
 
 
 def dict_to_sorted_by_utf16_tuple(d: JSON_Dict) -> JSON_Dict:
-    return dict(sorted(d.items(), key=key_to_utf16_tuple))  # noqa
+    return dict(sorted(d.items(), key=_key_to_utf16_tuple))  # noqa
