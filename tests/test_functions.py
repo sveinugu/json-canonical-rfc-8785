@@ -2,7 +2,7 @@ from ga4gh_json_canonical.functions import (dict_to_sorted_by_utf16_tuple,
                                             float_to_int_if_whole_and_not_large_exp,
                                             int_to_str_if_too_large,
                                             to_utf16_tuple)
-from ga4gh_json_canonical.util import JSON, preprocess_json_data
+from ga4gh_json_canonical.util import JSON, JsonDataPreprocessor
 
 
 def test_float_to_int_if_whole_and_not_large_exp():
@@ -72,7 +72,9 @@ def test_dict_to_sorted_by_utf16_tuple():
 
 def test_dict_to_sorted_by_utf16_tuple_recursive():
     def dict_to_sorted_by_utf16_tuple_recursive(data: JSON):
-        return preprocess_json_data(data, dict_func=dict_to_sorted_by_utf16_tuple)
+        _dict_to_sorted_by_utf16_tuple_recursive = JsonDataPreprocessor(
+            dict_func=dict_to_sorted_by_utf16_tuple)
+        return _dict_to_sorted_by_utf16_tuple_recursive(data)
 
     assert dict_to_sorted_by_utf16_tuple_recursive({
         'b': {

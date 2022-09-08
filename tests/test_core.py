@@ -68,6 +68,8 @@ def test_numbers():
     assert canonicalize([9223372036854775807]) == b'[9223372036854775807]'
     assert canonicalize([9223372036854775808]) == b'["9223372036854775808"]'
     assert canonicalize([56.0]) == b'[56]'
+    assert canonicalize([1e21]) == b'["1000000000000000000000"]'
+    assert canonicalize([1e22]) == b'[1e+22]'
 
 
 def test_sorting():

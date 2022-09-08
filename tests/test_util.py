@@ -1,13 +1,12 @@
 from enum import IntEnum
-from functools import partial
-from typing import Callable
+from types import NoneType
 
-from ga4gh_json_canonical.util import JSON, JSON_Dict, JSON_List, preprocess_json_data
+from ga4gh_json_canonical.util import JSON, JSON_Dict, JSON_List, JsonDataPreprocessor
 import pytest
 
 
 @pytest.fixture
-def preprocess_json_data_test_func() -> Callable[[JSON], JSON]:
+def json_data_preprocessor() -> JsonDataPreprocessor:
     def str_func(s: str) -> JSON:
         return s.upper()
 
@@ -15,13 +14,13 @@ def preprocess_json_data_test_func() -> Callable[[JSON], JSON]:
         return i + 1
 
     def float_func(f: float) -> JSON:
-        return f / 2
+        return int(f / 2)
 
     def bool_func(b: bool) -> JSON:
         return not b
 
-    def none_func(b: None) -> JSON:
-        return ''
+    def none_func(n: NoneType) -> JSON:
+        return str(n)
 
     def dict_func(d: JSON_Dict) -> JSON:
         d['new'] = 'value'
@@ -32,8 +31,7 @@ def preprocess_json_data_test_func() -> Callable[[JSON], JSON]:
         li.append([])
         return li
 
-    return partial(
-        preprocess_json_data,
+    return JsonDataPreprocessor(
         str_func=str_func,
         int_func=int_func,
         float_func=float_func,
@@ -44,7 +42,7 @@ def preprocess_json_data_test_func() -> Callable[[JSON], JSON]:
     )
 
 
-def test_preprocess_json_data_core_types(preprocess_json_data_test_func):
+def test_preprocess_json_data_core_types(json_data_preprocessor):
     data: JSON = {
         'key_1': [
             'text',
@@ -59,16 +57,16 @@ def test_preprocess_json_data_core_types(preprocess_json_data_test_func):
             (True, False, 'maybe'),
         ],
     }
-    assert preprocess_json_data_test_func(data,) == {
+    assert json_data_preprocessor(data,) == {
         'key_1': [
             'TEXT',
             2,
-            1.0,
+            2,
             False,
-            '',
+            'NONE',
             {
-                'key_2': ['STRING', 4, 2.0, True, '', []],
-                'key_3': ['CONTENT', 6, 3.0, False, '', []],
+                'key_2': ['STRING', 4, 3, True, 'NONE', []],
+                'key_3': ['CONTENT', 6, 4, False, 'NONE', []],
                 'new': 'value'
             },
             [False, True, 'MAYBE', []],
@@ -78,14 +76,14 @@ def test_preprocess_json_data_core_types(preprocess_json_data_test_func):
     }
 
 
-def test_preprocess_json_data_int_enum(preprocess_json_data_test_func):
+def test_preprocess_json_data_int_enum(json_data_preprocessor):
     class Choice(IntEnum):
         Yes = 1
         No = 0
 
-    assert preprocess_json_data_test_func([Choice.Yes, Choice.No]) == [2, 1, []]
+    assert json_data_preprocessor([Choice.Yes, Choice.No]) == [2, 1, []]
 
 
-def test_preprocess_json_data_set_fail(preprocess_json_data_test_func):
+def test_preprocess_json_data_set_fail(json_data_preprocessor):
     with pytest.raises(TypeError):
-        assert preprocess_json_data_test_func(set([1, 2, 3]))  # noqa
+        assert json_data_preprocessor(set([1, 2, 3]))  # noqa
