@@ -70,6 +70,7 @@ def test_numbers():
     assert canonicalize([56.0]) == b'[56]'
     assert canonicalize([1e20]) == b'["100000000000000000000"]'
     assert canonicalize([1e21]) == b'[1e+21]'
+    assert canonicalize([1e-6]) == b'0.000001'
 
 
 def test_sorting():
