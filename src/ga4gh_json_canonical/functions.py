@@ -11,7 +11,7 @@ def int_to_str_if_too_large(i: int) -> Union[int, str]:
 
 
 def float_to_int_if_whole_and_not_large_exp(f: float) -> Union[int, float]:
-    if f.is_integer() and abs(f) < 1e22:
+    if f.is_integer() and abs(f) < 1e21:
         return int(f)
     else:
         return f

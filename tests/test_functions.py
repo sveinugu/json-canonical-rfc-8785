@@ -21,17 +21,17 @@ def test_float_to_int_if_whole_and_not_large_exp():
     assert float_to_int_if_whole_and_not_large_exp(1e10) == 10000000000
     assert type(float_to_int_if_whole_and_not_large_exp(1e10)) is int
 
-    assert float_to_int_if_whole_and_not_large_exp(1e21) == 1000000000000000000000
-    assert type(float_to_int_if_whole_and_not_large_exp(1e21)) is int
+    assert float_to_int_if_whole_and_not_large_exp(1e20) == 100000000000000000000
+    assert type(float_to_int_if_whole_and_not_large_exp(1e20)) is int
 
-    assert float_to_int_if_whole_and_not_large_exp(1e22) == 1e22
-    assert type(float_to_int_if_whole_and_not_large_exp(1e22)) is float
+    assert float_to_int_if_whole_and_not_large_exp(1e21) == 1e21
+    assert type(float_to_int_if_whole_and_not_large_exp(1e21)) is float
 
-    assert float_to_int_if_whole_and_not_large_exp(-1e21) == -1000000000000000000000
-    assert type(float_to_int_if_whole_and_not_large_exp(-1e21)) is int
+    assert float_to_int_if_whole_and_not_large_exp(-1e20) == -100000000000000000000
+    assert type(float_to_int_if_whole_and_not_large_exp(-1e20)) is int
 
-    assert float_to_int_if_whole_and_not_large_exp(-1e22) == -1e22
-    assert type(float_to_int_if_whole_and_not_large_exp(-1e22)) is float
+    assert float_to_int_if_whole_and_not_large_exp(-1e21) == -1e21
+    assert type(float_to_int_if_whole_and_not_large_exp(-1e21)) is float
 
     assert float_to_int_if_whole_and_not_large_exp(1e-1) == 0.1
     assert type(float_to_int_if_whole_and_not_large_exp(1e-1)) is float
