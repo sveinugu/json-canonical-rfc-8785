@@ -19,9 +19,10 @@
 # Test program for ES6-JSON/JCS number serialization
 
 import binascii
+import os
 import struct
 
-from org.webpki.json.NumberToJson import convert2Es6Format
+from ga4gh_json_canonical import canonicalize
 
 INVALID_NUMBER = 'null'
 
@@ -35,7 +36,7 @@ def verify(ieeeHex, expected):
         ieeeHex = '0' + ieeeHex
     value = struct.unpack('>d', binascii.a2b_hex(ieeeHex))[0]
     try:
-        pyFormat = convert2Es6Format(value)
+        pyFormat = canonicalize(value).decode('utf8')
     except ValueError:
         if expected == INVALID_NUMBER:
             return
@@ -55,7 +56,8 @@ verify('7fffffffffffffff', INVALID_NUMBER)
 verify('7ff0000000000000', INVALID_NUMBER)
 verify('fff0000000000000', INVALID_NUMBER)
 # Change the file path below according to your installation
-file = open('c:\\es6\\numbers\\es6testfile100m.txt', 'r')
+testData = os.path.join(os.path.split(os.path.dirname(os.path.abspath(__file__)))[0], 'testdata')
+file = open(os.path.join(testData, 'es6testfile100k.txt'), 'r')
 lineCount = 0
 while True:
     line = file.readline()

@@ -22,8 +22,8 @@
 const crypto = require("crypto")
 const fs = require('fs')
 
-const outputFile = "es6testfile100m.txt"
-const numLines   = 1e8
+const outputFile = "es6testfile10k.txt"
+const numLines   = 1e4
 
 staticU64s = new BigUint64Array([
 	0x0000000000000000n, 0x8000000000000000n, 0x0000000000000001n, 0x8000000000000001n,
