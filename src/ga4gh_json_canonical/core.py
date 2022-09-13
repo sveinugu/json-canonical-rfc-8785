@@ -22,3 +22,18 @@ def canonicalize(data: JSON) -> bytes:
         allow_nan=False,
     )
     return output.encode('utf8')
+
+
+def canonicalize_pure(data: JSON) -> bytes:
+    def serialize_str(s: str) -> str:
+        return f'"{s:}"'
+
+    preprocess = JsonDataPreprocessor(str_func=serialize_str)
+    data = preprocess(data)
+    # output = json.dumps(
+    #     data,
+    #     separators=(',', ':'),
+    #     ensure_ascii=False,
+    #     allow_nan=False,
+    # )
+    return data.encode('utf8')

@@ -1,5 +1,7 @@
-from ga4gh_json_canonical import __version__, canonicalize
+from ga4gh_json_canonical import __version__, canonicalize, canonicalize_pure
 import pytest
+
+canonicalize = canonicalize_pure
 
 
 def test_version():
