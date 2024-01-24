@@ -23,7 +23,7 @@ from json import loads
 import os
 import sys
 
-from ga4gh_json_canonical import canonicalize
+from jsoncanon import canonicalize
 
 # Our test program
 if not len(sys.argv) in (1, 2):

@@ -1,8 +1,8 @@
-from ga4gh_json_canonical.functions import (dict_to_sorted_by_utf16_tuple,
-                                            float_to_int_if_whole_and_not_large_exp,
-                                            int_to_str_if_too_large,
-                                            to_utf16_tuple)
-from ga4gh_json_canonical.util import JSON, JsonDataPreprocessor
+from jsoncanon.functions import (dict_to_sorted_by_utf16_tuple,
+                                 float_to_int_if_whole_and_not_large_exp,
+                                 int_to_str_if_too_large,
+                                 to_utf16_tuple)
+from jsoncanon.util import JSON, JsonDataPreprocessor
 
 
 def test_float_to_int_if_whole_and_not_large_exp():

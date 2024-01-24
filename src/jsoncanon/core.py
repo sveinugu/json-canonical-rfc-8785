@@ -1,11 +1,9 @@
-__version__ = '0.1.0'
-
 import json
 
-from .functions import (dict_to_sorted_by_utf16_tuple,
-                        float_to_int_if_whole_and_not_large_exp,
-                        int_to_str_if_too_large)
-from .util import JSON, JsonDataPreprocessor
+from jsoncanon.functions import (dict_to_sorted_by_utf16_tuple,
+                                 float_to_int_if_whole_and_not_large_exp,
+                                 int_to_str_if_too_large)
+from jsoncanon.util import JSON, JsonDataPreprocessor
 
 
 def canonicalize(data: JSON) -> bytes:

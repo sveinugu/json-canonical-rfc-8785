@@ -1,9 +1,9 @@
-from ga4gh_json_canonical import __version__, canonicalize
+from jsoncanon import __version__, canonicalize
 import pytest
 
 
 def test_version():
-    assert __version__ == '0.1.0'
+    assert __version__ == '0.2.0'
 
 
 def test_whitespace():

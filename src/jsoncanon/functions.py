@@ -1,6 +1,6 @@
 from typing import Tuple, Union
 
-from ga4gh_json_canonical.util import JSON, JSON_Dict
+from jsoncanon.util import JSON, JSON_Dict
 
 
 def int_to_str_if_too_large(i: int) -> Union[int, str]:

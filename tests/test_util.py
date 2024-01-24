@@ -1,7 +1,7 @@
 from enum import IntEnum
 from types import NoneType
 
-from ga4gh_json_canonical.util import JSON, JSON_Dict, JSON_List, JsonDataPreprocessor
+from jsoncanon.util import JSON, JSON_Dict, JSON_List, JsonDataPreprocessor
 import pytest
 
 
