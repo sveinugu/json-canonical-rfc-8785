@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "jsoncanon"
-version = "0.2.1"
+version = "0.2.2"
 description = "Typed Python implementation of JSON Canonicalization Scheme as described in RFC 8785. Currently lacks full floating point support"
 license = "Apache-2.0"
-repository = "http://github.com/fairtracks/omnipy"
+repository = "https://github.com/sveinugu/jsoncanon"
 authors = ["Sveinung Gundersen <sveinugu@gmail.com>"]
 readme = "README.md"
 keywords = ["JSON", "RFC-8785", "canonicalization", "deterministic", "serialization", "hash"]
-classifiers = ["Development Status :: 2 - Pre-Alpha", "Framework :: Pydantic", "Intended Audience :: Developers", "License :: OSI Approved :: Apache Software License", "Programming Language :: Python :: 3.8", "Topic :: Software Development :: Libraries"]
+classifiers = ["Development Status :: 2 - Pre-Alpha", "Intended Audience :: Developers", "License :: OSI Approved :: Apache Software License", "Programming Language :: Python :: 3.8", "Topic :: Software Development :: Libraries"]
 packages = [{include = "jsoncanon", from = "src"}]
 
 [tool.poetry.dependencies]
