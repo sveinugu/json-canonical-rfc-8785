@@ -1,8 +1,14 @@
 [tool.poetry]
 name = "jsoncanon"
-version = "0.2.0"
-description = "Partial Python implementation of JSON Canonicalization Scheme as described in RFC 8785 (https://www.rfc-editor.org/rfc/rfc8785.html) as needed by the GA4GH Sequence Collection working group."
+version = "0.2.1"
+description = "Typed Python implementation of JSON Canonicalization Scheme as described in RFC 8785. Currently lacks full floating point support"
+license = "Apache-2.0"
+repository = "http://github.com/fairtracks/omnipy"
 authors = ["Sveinung Gundersen <sveinugu@gmail.com>"]
+readme = "README.md"
+keywords = ["JSON", "RFC-8785", "canonicalization", "deterministic", "serialization", "hash"]
+classifiers = ["Development Status :: 2 - Pre-Alpha", "Framework :: Pydantic", "Intended Audience :: Developers", "License :: OSI Approved :: Apache Software License", "Programming Language :: Python :: 3.8", "Topic :: Software Development :: Libraries"]
+packages = [{include = "jsoncanon", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
