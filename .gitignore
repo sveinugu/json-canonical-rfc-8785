@@ -130,3 +130,6 @@ dmypy.json
 
 # PyCharm project settings
 .idea
+
+# Recommended for libraries to not commit poetry.lock
+poetry.lock
