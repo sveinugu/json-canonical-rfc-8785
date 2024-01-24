@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jsoncanon"
-version = "0.2.2"
+version = "0.2.3"
 description = "Typed Python implementation of JSON Canonicalization Scheme as described in RFC 8785. Currently lacks full floating point support"
 license = "Apache-2.0"
 repository = "https://github.com/sveinugu/jsoncanon"
